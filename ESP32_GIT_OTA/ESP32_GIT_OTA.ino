@@ -5,10 +5,12 @@
 String FirmwareVer = "1.8"; // current firmware version.
 const char* string1 = FirmwareVer.c_str();
 
+// Comment it if you use your private url.
 #define URL_fw_Version "https://raw.githubusercontent.com/vadaliya/ota/master/version.txt"
 #define URL_fw_Bin "https://raw.githubusercontent.com/vadaliya/ota/master/firmware1.bin"
 #define LED_BUILTIN 2
 
+// if you've your website then you can put your website url below and uncomment it.
 //#define URL_fw_Version "http://vadaliya2007.000webhostapp.com/atte/ota/version.txt"
 //#define URL_fw_Bin "http://vadaliya2007.000webhostapp.com/atte/ota/firmware.bin"
 
@@ -22,7 +24,9 @@ void FirmwareUpdate()
   Serial.print("\n Current Version is: ");
   Serial.print(string1);
   
-  http.begin(URL_fw_Version, "‎‎5B FB D1 D4 49 D3 0F A9 C6 40 03 34 BA E0 24 05 AA D2 E2 01");    // check version URL
+  // check version URL, Thumbprint(Fingerprint) of Website and thumbprint is change in some months.
+  // you can find website thumbprint using this website : https://www.grc.com/fingerprints.htm
+  http.begin(URL_fw_Version, "5B FB D1 D4 49 D3 0F A9 C6 40 03 34 BA E0 24 05 AA D2 E2 01");    
   delay(100);
   int httpCode = http.GET();            // get data from version file
   delay(100);
@@ -58,7 +62,7 @@ void FirmwareUpdate()
       Serial.println("\n New firmware detected");
       WiFiClient client;
 
-      t_httpUpdate_return ret = ESPhttpUpdate.update(URL_fw_Bin, "", "‎5B FB D1 D4 49 D3 0F A9 C6 40 03 34 BA E0 24 05 AA D2 E2 01");
+      t_httpUpdate_return ret = ESPhttpUpdate.update(URL_fw_Bin, "", "5B FB D1 D4 49 D3 0F A9 C6 40 03 34 BA E0 24 05 AA D2 E2 01");
 
       switch (ret) {
         case HTTP_UPDATE_FAILED:
