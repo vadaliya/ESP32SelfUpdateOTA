@@ -14,8 +14,8 @@ const char* string1 = FirmwareVer.c_str();
 
 HTTPClient http;
 
-const char* ssid = "Honor8X"; // Put your wifi name here
-const char* password = "1414141414"; // put your wifi password here, if it's open then only declare = ""
+const char* ssid = "Your_SSID"; // Put your wifi name here
+const char* password = "your_password"; // put your wifi password here, if it's open then only declare = ""
 
 void FirmwareUpdate()
 {
@@ -78,7 +78,7 @@ void FirmwareUpdate()
 }
 
 unsigned long previousMillis = 0;        // will store last time LED was updated
-const long interval = 60*1000;
+const long interval = 1*60*1000; // 1 Minute interval (60*1000= 60 Second)
 
 void repeatedCall() {
   unsigned long currentMillis = millis();
